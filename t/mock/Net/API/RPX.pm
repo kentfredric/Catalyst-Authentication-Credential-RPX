@@ -25,28 +25,29 @@ our $RESPONSES = {
     err => {
       msg  => 'Data not found',
       code => 2,
-      } stat => 'fail',
+    },
+    stat => 'fail',
   },
 };
 
-sub auth_info { 
-    my ( $self, $conf ) = @_;
-    return $RESPONSES->{ $conf->{'token'} };
+sub auth_info {
+  my ( $self, $conf ) = @_;
+  return $RESPONSES->{ $conf->{'token'} };
 }
 
-sub map { 
-    my ( $self, $conf ) = @_; 
-    die "Not Implemented"; 
+sub map {
+  my ( $self, $conf ) = @_;
+  die "Not Implemented";
 }
 
-sub unmap { 
-    my ( $self, $conf ) = @_ ; 
-    die "Not Implemented"; 
+sub unmap {
+  my ( $self, $conf ) = @_;
+  die "Not Implemented";
 }
 
-sub mappings { 
-    my ( $self, $conf ) = @_ ; 
-    die "Not Implemented" ; 
+sub mappings {
+  my ( $self, $conf ) = @_;
+  die "Not Implemented";
 }
 
 1;
