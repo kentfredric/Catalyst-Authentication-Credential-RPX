@@ -14,9 +14,11 @@ sub APIRPX() {
   'Net::API::RPX';
 }
 
-use ok RPX;
+# Order is important 
+
 use Find::Lib './mock';
 use ok APIRPX;
+use ok RPX;
 
 my $config = {
   api_key     => 'SomeApiKey',

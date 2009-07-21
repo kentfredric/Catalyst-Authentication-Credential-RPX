@@ -1,0 +1,3 @@
+^dist.ini
+^MANIFEST.SKIP
+^Catalyst-Authentication-*
