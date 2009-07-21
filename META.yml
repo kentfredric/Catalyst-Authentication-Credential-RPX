@@ -1,0 +1,24 @@
+---
+abstract: 'Use Janarains RPX service for Credentials'
+author:
+  - 'Kent Fredric <kentnl@cpan.org>'
+generated_by: 'Dist::Zilla::Plugin::MetaYAML version 1.092000'
+license: bsd
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Catalyst-Authentication-Credential-RPX
+provides:
+  Catalyst::Authentication::Credential::RPX:
+    file: lib/Catalyst/Authentication/Credential/RPX.pm
+    version: 0.0920221
+requires:
+  Find::Lib: 0
+  Net::API::RPX: 0.01
+  Test::Exception: 0
+  Test::MockObject: 0
+  Test::More: 0
+  Test::use::ok: 0.02
+resources:
+  repository: http://github.com/kentfredric/catalyst-authentication-credential-rpx
+version: 0.0920221

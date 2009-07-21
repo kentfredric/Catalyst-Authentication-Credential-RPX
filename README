@@ -1,0 +1,69 @@
+NAME
+    Catalyst::Authentication::Credential::RPX - Use Janarains RPX service
+    for Credentials
+
+VERSION
+    version 0.0920221
+
+SYNOPSIS
+        use Catalyst qw/ Authentication /;
+
+        package MyApp::Controller::Auth; 
+
+        sub login : Local { 
+            my ( $self , $c ) = @_; 
+            $c->authenticate();
+        }
+
+CONFIGURATION
+        __PACKAGE__->config->{'Plugin::Authenticate'} = {
+          default_realm => 'RPX_Service',
+          realms        => {
+            RPX_Service => {
+              credential => {
+                class => 'RPX',
+
+                # Package Options
+                api_key => 'ASDF...',
+
+                # optional fields
+                base_url    => 'http://foo.bar.org',
+                ua          => 'Firefox',
+                token_field => 'token',
+              }
+            }
+          }
+        };
+
+ATTRIBUTES
+    *   "api_key" | " ro required Str "
+
+        The API Key for connecting to the RPX server.
+
+    *   "base_url" | " ro Str predicate=has_base_url "
+
+        The URL The RPX server interconnects with.
+
+    *   "ua" | " ro Str predicate=has_ua "
+
+        The User-Agent String.
+
+    *   "token_field" | " ro Str default='token' "
+
+        The token to look for in request params
+
+    *   "last_auth_info" | " rw HashRef predicate=has_last_auth_info
+        clearer=clear_last_auth_info "
+
+        The results of the last call to "->auth_info"
+
+AUTHOR
+      Kent Fredric <kentnl@cpan.org>
+
+COPYRIGHT AND LICENSE
+    This software is Copyright (c) 2009 by 'Cloudtone Studios'.
+
+    This is free software, licensed under:
+
+      The (three-clause) BSD License
+
