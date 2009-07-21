@@ -14,7 +14,7 @@ sub APIRPX() {
   'Net::API::RPX';
 }
 
-# Order is important 
+# Order is important
 
 use Find::Lib './mock';
 use ok APIRPX;
@@ -25,47 +25,46 @@ my $config = {
   base_url    => 'http://example.com',
   token_field => 'token',
 };
+my $realm = Test::MockObject->new();
+$realm->mock( find_user => sub { $_[1] } );
 
-{    # Success
-
+my %data = map {
+  my $i   = $_;
   my $req = Test::MockObject->new();
-  $req->mock( params => sub { { field => 'value', token => 'A', } } );
-
+  $req->mock(
+    params => sub {
+      {
+        field => 'value',
+        token => $i,
+      };
+    }
+  );
   my $c = Test::MockObject->new();
   $c->mock(
     req   => sub { $req },
     debug => sub { 1 },
     log   => sub { 1 },
   );
-  my $realm = Test::MockObject->new();
-  $realm->mock( find_user => sub { $_[1] } );
+
+  $i => $c,
+
+} qw( A B );
+
+{    # Success
 
   my ( $m, $user );
-  lives_ok { $m = RPX->new( $config, $c, $realm, ) } "Create Credential ( XSUCCESS )";
+
+  lives_ok { $m = RPX->new( $config, $data{A}, $realm ) } "Create Credential ( XSUCCESS )";
   can_ok( $m, qw( new authenticate ) );
 
-  lives_ok { $user = $m->authenticate( $c, $realm, ); } "Authenticate Credential ( XSUCCESS )";
+  lives_ok { $user = $m->authenticate( $data{A}, $realm ); } "Authenticate Credential ( XSUCCESS )";
   is_deeply( $user, $Net::API::RPX::RESPONSES->{'A'}, "Credentials Match Expectations" );
 }
 
 {    # Fail
-
-  my $req = Test::MockObject->new();
-  $req->mock( params => sub { { field => 'value', token => 'B', } } );
-
-  my $c = Test::MockObject->new();
-  $c->mock(
-    req   => sub { $req },
-    debug => sub { 1 },
-    log   => sub { 1 },
-  );
-  my $realm = Test::MockObject->new();
-  $realm->mock( find_user => sub { $_[1] } );
-
   my ( $m, $user );
-  lives_ok { $m = RPX->new( $config, $c, $realm, ) } "Create Credential ( XFAIL )";
+  lives_ok { $m = RPX->new( $config, $data{B}, $realm, ) } "Create Credential ( XFAIL )";
   can_ok( $m, qw( new authenticate  ) );
-
-  lives_ok { $user = $m->authenticate( $c, $realm, ); } "Authenticate Credential ( XFAIL )"; 
-  is_deeply( $user, undef , "Authentication fails properly");
+  lives_ok { $user = $m->authenticate( $data{B}, $realm, ); } "Authenticate Credential ( XFAIL )";
+  is_deeply( $user, undef, "Authentication fails properly" );
 }
