@@ -42,7 +42,7 @@ my $config = {
 
   my ( $m, $user );
   lives_ok { $m = RPX->new( $config, $c, $realm, ) } "Create Credential ( XSUCCESS )";
-  can_ok( $m, qw( new authenticate authenticate_rpx ) );
+  can_ok( $m, qw( new authenticate ) );
 
   lives_ok { $user = $m->authenticate( $c, $realm, ); } "Authenticate Credential ( XSUCCESS )";
   is_deeply( $user, $Net::API::RPX::RESPONSES->{'A'}, "Credentials Match Expectations" );
@@ -64,8 +64,8 @@ my $config = {
 
   my ( $m, $user );
   lives_ok { $m = RPX->new( $config, $c, $realm, ) } "Create Credential ( XFAIL )";
-  can_ok( $m, qw( new authenticate authenticate_rpx ) );
+  can_ok( $m, qw( new authenticate  ) );
 
   lives_ok { $user = $m->authenticate( $c, $realm, ); } "Authenticate Credential ( XFAIL )"; 
-  is_deeply( $user, $Net::API::RPX::RESPONSES->{'B'} , "Failure Message is sent");
+  is_deeply( $user, undef , "Authentication fails properly");
 }

@@ -32,7 +32,8 @@ our $RESPONSES = {
 
 sub auth_info {
   my ( $self, $conf ) = @_;
-  return $RESPONSES->{ $conf->{'token'} };
+  my $token  = $conf->{'token'};
+  return $RESPONSES->{ $token };
 }
 
 sub map {
