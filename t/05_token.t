@@ -3,7 +3,8 @@ use strict;
 use warnings;
 
 use Test::MockObject;
-use Test::More tests => 1;
+use Test::More tests => 10;
+use Test::Exception;
 
 sub RPX() {
   'Catalyst::Authentication::Credential::RPX';
@@ -37,11 +38,12 @@ my $config = {
   my $realm = Test::MockObject->new();
   $realm->mock( find_user => sub { $_[1] } );
 
-  my $m = RPX->new( $config, $c, $realm, );
+  my ( $m, $user );
+  lives_ok { $m = RPX->new( $config, $c, $realm, ) } "Create Credential ( XSUCCESS )";
   can_ok( $m, qw( new authenticate authenticate_rpx ) );
 
-  my $user = $m->authenticate( $c, $realm, );
-  is_deeply( $user, $Net::API::RPX::RESPONSES->{'A'} );
+  lives_ok { $user = $m->authenticate( $c, $realm, ); } "Authenticate Credential ( XSUCCESS )";
+  is_deeply( $user, $Net::API::RPX::RESPONSES->{'A'}, "Credentials Match Expectations" );
 }
 
 {    # Fail
@@ -58,9 +60,10 @@ my $config = {
   my $realm = Test::MockObject->new();
   $realm->mock( find_user => sub { $_[1] } );
 
-  my $m = RPX->new( $config, $c, $realm, );
+  my ( $m, $user );
+  lives_ok { $m = RPX->new( $config, $c, $realm, ) } "Create Credential ( XFAIL )";
   can_ok( $m, qw( new authenticate authenticate_rpx ) );
 
-  my $user = $m->authenticate( $c, $realm, );
-  is_deeply( $user, $Net::API::RPX::RESPONSES->{'B'} );
+  lives_ok { $user = $m->authenticate( $c, $realm, ); } "Authenticate Credential ( XFAIL )"; 
+  is_deeply( $user, $Net::API::RPX::RESPONSES->{'B'} , "Failure Message is sent");
 }
