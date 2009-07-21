@@ -7,7 +7,5 @@ META.yml
 Makefile.PL
 README
 lib/Catalyst/Authentication/Credential/RPX.pm
-pod2htmd.tmp
-pod2htmi.tmp
 t/05_token.t
 t/mock/Net/API/RPX.pm
