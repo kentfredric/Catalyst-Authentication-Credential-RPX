@@ -3,7 +3,7 @@ NAME
     for Credentials
 
 VERSION
-    version 0.0920221
+    version 0.0920310
 
 SYNOPSIS
         use Catalyst qw/ Authentication /;

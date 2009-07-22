@@ -7,7 +7,7 @@
       "version" : 1.4,
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "version" : "0.0920221",
+   "version" : "0.0920310",
    "name" : "Catalyst-Authentication-Credential-RPX",
    "author" : [
       "Kent Fredric <kentnl@cpan.org>"
@@ -15,17 +15,21 @@
    "license" : "bsd",
    "provides" : {
       "Catalyst::Authentication::Credential::RPX" : {
-         "version" : "0.0920221",
+         "version" : "0.0920310",
          "file" : "lib/Catalyst/Authentication/Credential/RPX.pm"
       }
    },
    "requires" : {
       "Test::More" : "0",
+      "MooseX::Types::Moose" : "0",
+      "MooseX::Has::Sugar" : "0.0300",
       "Test::MockObject" : "0",
+      "namespace::autoclean" : "0",
       "Test::Exception" : "0",
       "Find::Lib" : "0",
       "Net::API::RPX" : "0.01",
-      "Test::use::ok" : "0.02"
+      "Test::use::ok" : "0.02",
+      "Moose" : "0"
    },
    "abstract" : "Use Janarains RPX service for Credentials"
 }

@@ -1,5 +1,5 @@
 package Catalyst::Authentication::Credential::RPX;
-our $VERSION = '0.0920221';
+our $VERSION = '0.0920310';
 
 
 # ABSTRACT: Use Janarains RPX service for Credentials
@@ -107,7 +107,7 @@ Catalyst::Authentication::Credential::RPX - Use Janarains RPX service for Creden
 
 =head1 VERSION
 
-version 0.0920221
+version 0.0920310
 
 =head1 SYNOPSIS
 

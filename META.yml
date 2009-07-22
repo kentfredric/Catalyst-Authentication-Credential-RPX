@@ -11,14 +11,18 @@ name: Catalyst-Authentication-Credential-RPX
 provides:
   Catalyst::Authentication::Credential::RPX:
     file: lib/Catalyst/Authentication/Credential/RPX.pm
-    version: 0.0920221
+    version: 0.0920310
 requires:
   Find::Lib: 0
+  Moose: 0
+  MooseX::Has::Sugar: 0.0300
+  MooseX::Types::Moose: 0
   Net::API::RPX: 0.01
   Test::Exception: 0
   Test::MockObject: 0
   Test::More: 0
   Test::use::ok: 0.02
+  namespace::autoclean: 0
 resources:
   repository: http://github.com/kentfredric/catalyst-authentication-credential-rpx
-version: 0.0920221
+version: 0.0920310
