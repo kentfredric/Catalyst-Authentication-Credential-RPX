@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Fixed Typo ( Thanks Brian Cassidy, I really should have noticed that one sooner )
 
 0.0920310 2009-07-22 10:05:43 UTC
           Added more dependencies

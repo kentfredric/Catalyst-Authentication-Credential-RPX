@@ -1,6 +1,6 @@
 package Catalyst::Authentication::Credential::RPX;
 
-# ABSTRACT: Use Janarains RPX service for Credentials
+# ABSTRACT: Use JanRains RPX service for Credentials
 
 use strict;
 use warnings;
