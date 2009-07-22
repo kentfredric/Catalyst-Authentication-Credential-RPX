@@ -122,7 +122,7 @@ version 0.0920310
 
 =head1 CONFIGURATION
 
-    __PACKAGE__->config->{'Plugin::Authenticate'} = {
+    __PACKAGE__->config('Plugin::Authenticate' => {
       default_realm => 'RPX_Service',
       realms        => {
         RPX_Service => {
@@ -139,7 +139,7 @@ version 0.0920310
           }
         }
       }
-    };
+    });
 
 =head1 ATTRIBUTES
 
