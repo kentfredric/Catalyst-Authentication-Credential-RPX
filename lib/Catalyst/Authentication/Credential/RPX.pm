@@ -113,10 +113,10 @@ version 0.0920310
 
     use Catalyst qw/ Authentication /;
 
-    package MyApp::Controller::Auth; 
+    package MyApp::Controller::Auth;
 
-    sub login : Local { 
-        my ( $self , $c ) = @_; 
+    sub login : Local {
+        my ( $self , $c ) = @_;
         $c->authenticate();
     }
 
@@ -159,7 +159,7 @@ The User-Agent String.
 
 =item * C<token_field> | C< ro Str default='token' >
 
-The token to look for in request params 
+The token to look for in request params
 
 =item * C<last_auth_info> | C< rw HashRef predicate=has_last_auth_info  clearer=clear_last_auth_info >
 
