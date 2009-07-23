@@ -1,8 +1,8 @@
 package Catalyst::Authentication::Credential::RPX;
-our $VERSION = '0.0920310';
+our $VERSION = '0.0920400';
 
 
-# ABSTRACT: Use Janarains RPX service for Credentials
+# ABSTRACT: Use JanRains RPX service for Credentials
 
 use strict;
 use warnings;
@@ -103,26 +103,26 @@ __END__
 
 =head1 NAME
 
-Catalyst::Authentication::Credential::RPX - Use Janarains RPX service for Credentials
+Catalyst::Authentication::Credential::RPX - Use JanRains RPX service for Credentials
 
 =head1 VERSION
 
-version 0.0920310
+version 0.0920400
 
 =head1 SYNOPSIS
 
     use Catalyst qw/ Authentication /;
 
-    package MyApp::Controller::Auth; 
+    package MyApp::Controller::Auth;
 
-    sub login : Local { 
-        my ( $self , $c ) = @_; 
+    sub login : Local {
+        my ( $self , $c ) = @_;
         $c->authenticate();
     }
 
 =head1 CONFIGURATION
 
-    __PACKAGE__->config->{'Plugin::Authenticate'} = {
+    __PACKAGE__->config('Plugin::Authenticate' => {
       default_realm => 'RPX_Service',
       realms        => {
         RPX_Service => {
@@ -139,7 +139,7 @@ version 0.0920310
           }
         }
       }
-    };
+    });
 
 =head1 ATTRIBUTES
 
@@ -159,7 +159,7 @@ The User-Agent String.
 
 =item * C<token_field> | C< ro Str default='token' >
 
-The token to look for in request params 
+The token to look for in request params
 
 =item * C<last_auth_info> | C< rw HashRef predicate=has_last_auth_info  clearer=clear_last_auth_info >
 

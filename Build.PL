@@ -7,7 +7,7 @@ use Module::Build;
 my $build = Module::Build->new(
   module_name   => 'Catalyst::Authentication::Credential::RPX',
   license       => 'bsd',
-  dist_abstract => "Use\ Janarains\ RPX\ service\ for\ Credentials",
+  dist_abstract => "Use\ JanRains\ RPX\ service\ for\ Credentials",
   dist_name     => "Catalyst\-Authentication\-Credential\-RPX",
   dist_author   => [
 "Kent\ Fredric\ \<kentnl\@cpan\.org\>",

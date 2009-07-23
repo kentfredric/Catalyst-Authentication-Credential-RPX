@@ -8,8 +8,8 @@ WriteMakefile(
   DISTNAME  => 'Catalyst-Authentication-Credential-RPX',
   NAME      => 'Catalyst::Authentication::Credential::RPX',
   AUTHOR    => 'Kent\ Fredric\ \<kentnl\@cpan\.org\>',
-  ABSTRACT  => 'Use\ Janarains\ RPX\ service\ for\ Credentials',
-  VERSION   => '0.0920310',
+  ABSTRACT  => 'Use\ JanRains\ RPX\ service\ for\ Credentials',
+  VERSION   => '0.0920400',
   EXE_FILES => [ qw() ],
   (eval { ExtUtils::MakeMaker->VERSION(6.31) } ? (LICENSE => 'bsd') : ()),
   PREREQ_PM    => {

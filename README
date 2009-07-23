@@ -1,22 +1,22 @@
 NAME
-    Catalyst::Authentication::Credential::RPX - Use Janarains RPX service
-    for Credentials
+    Catalyst::Authentication::Credential::RPX - Use JanRains RPX service for
+    Credentials
 
 VERSION
-    version 0.0920310
+    version 0.0920400
 
 SYNOPSIS
         use Catalyst qw/ Authentication /;
 
-        package MyApp::Controller::Auth; 
+        package MyApp::Controller::Auth;
 
-        sub login : Local { 
-            my ( $self , $c ) = @_; 
+        sub login : Local {
+            my ( $self , $c ) = @_;
             $c->authenticate();
         }
 
 CONFIGURATION
-        __PACKAGE__->config->{'Plugin::Authenticate'} = {
+        __PACKAGE__->config('Plugin::Authenticate' => {
           default_realm => 'RPX_Service',
           realms        => {
             RPX_Service => {
@@ -33,7 +33,7 @@ CONFIGURATION
               }
             }
           }
-        };
+        });
 
 ATTRIBUTES
     *   "api_key" | " ro required Str "
