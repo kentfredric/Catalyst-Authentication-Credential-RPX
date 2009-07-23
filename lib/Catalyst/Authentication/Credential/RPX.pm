@@ -14,16 +14,16 @@ use Net::API::RPX;
 
     use Catalyst qw/ Authentication /;
 
-    package MyApp::Controller::Auth; 
+    package MyApp::Controller::Auth;
 
-    sub login : Local { 
-        my ( $self , $c ) = @_; 
+    sub login : Local {
+        my ( $self , $c ) = @_;
         $c->authenticate();
     }
 
 =head1 CONFIGURATION
 
-    __PACKAGE__->config->{'Plugin::Authenticate'} = {
+    __PACKAGE__->config('Plugin::Authenticate' => {
       default_realm => 'RPX_Service',
       realms        => {
         RPX_Service => {
@@ -40,7 +40,7 @@ use Net::API::RPX;
           }
         }
       }
-    };
+    });
 
 =cut
 
@@ -62,13 +62,13 @@ The User-Agent String.
 
 =item * C<token_field> | C< ro Str default='token' >
 
-The token to look for in request params 
+The token to look for in request params
 
 =item * C<last_auth_info> | C< rw HashRef predicate=has_last_auth_info  clearer=clear_last_auth_info >
 
 The results of the last call to C<< ->auth_info >>
 
-=back 
+=back
 
 =cut
 
