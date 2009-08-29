@@ -1,9 +1,9 @@
 NAME
-    Catalyst::Authentication::Credential::RPX - Use JanRains RPX service for
-    Credentials
+    Catalyst::Authentication::Credential::RPX - Use JanRain's RPX service
+    for Credentials
 
 VERSION
-    version 0.0920400
+    version 0.10003903
 
 SYNOPSIS
         use Catalyst qw/ Authentication /;
@@ -36,27 +36,52 @@ CONFIGURATION
         });
 
 ATTRIBUTES
-    *   "api_key" | " ro required Str "
+  api_key
+    The API Key for connecting to the RPX server.
 
-        The API Key for connecting to the RPX server.
+   type: ro required Str
+  base_url
+    The URL The RPX server interconnects with.
 
-    *   "base_url" | " ro Str predicate=has_base_url "
+   type: ro Str predicate=has_base_url
+  ua
+    The User-Agent String.
 
-        The URL The RPX server interconnects with.
+   type: ro Str predicate=has_ua
+  token_field
+    The token to look for in request parameters
 
-    *   "ua" | " ro Str predicate=has_ua "
+   type: ro Str default = 'token
+  last_auth_info
+    The results of the last call to "->auth_info"
 
-        The User-Agent String.
+   type: rw HashRef predicate = has_last_auth_info clearer = clear_last_auth_info
+PRIVATE ATTRIBUTES
+  _config
+   type: rw required HashRef
+  _app
+   type: rw required Object
+  _realm
+   type: rw required Object
+  _api_driver
+   type: ro lazy_build Object
+   handles: auth_info map unmap mappings
+METHODS
+  CONSTRUCTOR
+   new
+    This method is called by the Authentication API.
 
-    *   "token_field" | " ro Str default='token' "
+   signature: ->new( $config , $app , $realm );
+  BUILDERS ( Private )
+   _build__api_driver
+    Creates an instance of Net::API::RPX for us to communicate with.
 
-        The token to look for in request params
-
-    *   "last_auth_info" | " rw HashRef predicate=has_last_auth_info
-        clearer=clear_last_auth_info "
-
-        The results of the last call to "->auth_info"
-
+   signature: ->_build__api_driver
+  AUTHENTICATION
+   authenticate
+   signature: ->authenticate( $context, $realm, $authinfo )
+   authenticate_rpx
+   signature: ->authenticate_rpx( @args )
 AUTHOR
       Kent Fredric <kentnl@cpan.org>
 

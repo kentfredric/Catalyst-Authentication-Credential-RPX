@@ -1,8 +1,8 @@
 ---
-abstract: 'Use JanRains RPX service for Credentials'
+abstract: "Use JanRain's RPX service for Credentials"
 author:
   - 'Kent Fredric <kentnl@cpan.org>'
-generated_by: 'Dist::Zilla::Plugin::MetaYAML version 1.092000'
+generated_by: 'Dist::Zilla::Plugin::MetaYAML version 1.092400'
 license: bsd
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -11,7 +11,7 @@ name: Catalyst-Authentication-Credential-RPX
 provides:
   Catalyst::Authentication::Credential::RPX:
     file: lib/Catalyst/Authentication/Credential/RPX.pm
-    version: 0.0920400
+    version: 0.10003903
 requires:
   Find::Lib: 0
   Moose: 0
@@ -25,4 +25,4 @@ requires:
   namespace::autoclean: 0
 resources:
   repository: http://github.com/kentfredric/catalyst-authentication-credential-rpx
-version: 0.0920400
+version: 0.10003903
