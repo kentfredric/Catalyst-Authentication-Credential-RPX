@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.10003903 2009-08-29 03:26:38 UTC
           Version Scheme switched to AutoVersion::Relative.
           Rebuilt witn newer Dist::Zilla to get author tests in.
           Boosted the documentation a bit.
