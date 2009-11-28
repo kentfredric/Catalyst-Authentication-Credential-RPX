@@ -16,9 +16,14 @@ sub APIRPX() {
 
 # Order is important
 
-use Find::Lib './mock';
-use ok APIRPX;
-use ok RPX;
+use FindBin;
+use lib "$FindBin::Bin/mock";
+BEGIN {
+    use_ok(APIRPX());
+}
+BEGIN {
+    use_ok(RPX());
+}
 
 my $config = {
   api_key     => 'SomeApiKey',

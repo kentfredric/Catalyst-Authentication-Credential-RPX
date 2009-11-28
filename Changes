@@ -1,6 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Dropped Find::Lib
+          Dropped Use::ok
+          Rebuild Dist/Dzill.
+
 
 0.10003903 2009-08-29 03:26:38 UTC
           Version Scheme switched to AutoVersion::Relative.
