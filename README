@@ -3,12 +3,15 @@ NAME
     for Credentials
 
 VERSION
-    version 0.10003903
+    version 0.10013116
 
 SYNOPSIS
         use Catalyst qw/ Authentication /;
 
         package MyApp::Controller::Auth;
+    our $VERSION = '0.10013116';
+
+
 
         sub login : Local {
             my ( $self , $c ) = @_;
@@ -36,52 +39,57 @@ CONFIGURATION
         });
 
 ATTRIBUTES
-  api_key
+  api_key Str[ro]*
     The API Key for connecting to the RPX server.
 
-   type: ro required Str
-  base_url
+  base_url Str[ro]
     The URL The RPX server interconnects with.
 
-   type: ro Str predicate=has_base_url
-  ua
+  ua Str[ro]
     The User-Agent String.
 
-   type: ro Str predicate=has_ua
-  token_field
+  token_field Str[ro] = 'token'
     The token to look for in request parameters
 
-   type: ro Str default = 'token
-  last_auth_info
+  last_auth_info HashRef[rw]X
     The results of the last call to "->auth_info"
 
-   type: rw HashRef predicate = has_last_auth_info clearer = clear_last_auth_info
-PRIVATE ATTRIBUTES
-  _config
-   type: rw required HashRef
-  _app
-   type: rw required Object
-  _realm
-   type: rw required Object
-  _api_driver
-   type: ro lazy_build Object
-   handles: auth_info map unmap mappings
-METHODS
-  CONSTRUCTOR
-   new
+AUTHENTICATION METHODS
+  authenticate
+  authenticate ( $context, $realm, $authinfo )
+        ->authenticate( $context, $realm, $authinfo )
+
+  authenticate_rpx
+  authenticate_rpx ( @args )
+        ->authenticate_rpx( @args )
+
+CONSTRUCTOR METHODS
+  new
+  new ( $config, $app, $realm );
     This method is called by the Authentication API.
 
-   signature: ->new( $config , $app , $realm );
-  BUILDERS ( Private )
-   _build__api_driver
+        ->new( $config , $app , $realm );
+
+ATTRIBUTE METHODS
+  has_base_url <- predicate('base_url')
+  has_ua <- predicate('ua')
+  has_last_auth_info <- predicate('last_auth_info')
+  clear_last_auth_info <- clearer('last_auth_info')
+  auth_info <- _api_driver
+  map <- _api_driver
+  unmap <- _api_driver
+  mappings <- _api_driver
+PRIVATE ATTRIBUTES
+  _config HashRef[rw]*
+  _app Object[rw]*
+  _realm Object[rw]*
+  _api_driver Object[ro]
+PRIVATE BUILDERS
+  _build__api_driver
     Creates an instance of Net::API::RPX for us to communicate with.
 
-   signature: ->_build__api_driver
-  AUTHENTICATION
-   authenticate
-   signature: ->authenticate( $context, $realm, $authinfo )
-   authenticate_rpx
-   signature: ->authenticate_rpx( @args )
+        ->_build__api_driver
+
 AUTHOR
       Kent Fredric <kentnl@cpan.org>
 

@@ -1,21 +1,24 @@
 {
    "resources" : {
-      "repository" : "http://github.com/kentfredric/catalyst-authentication-credential-rpx"
+      "repository" : "http://github.com/kentfredric/Catalyst-Authentication-Credential-RPX"
    },
-   "generated_by" : "Dist::Zilla::Plugin::MetaJSON version 1.092400",
    "meta-spec" : {
       "version" : 1.4,
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "version" : "0.10003903",
+   "generated_by" : "Dist::Zilla version 1.093280",
+   "version" : "0.10013116",
    "name" : "Catalyst-Authentication-Credential-RPX",
    "author" : [
       "Kent Fredric <kentnl@cpan.org>"
    ],
    "license" : "bsd",
+   "build_requires" : {
+      "Module::Build" : "0.35"
+   },
    "provides" : {
       "Catalyst::Authentication::Credential::RPX" : {
-         "version" : "0.10003903",
+         "version" : "0.10013116",
          "file" : "lib/Catalyst/Authentication/Credential/RPX.pm"
       }
    },
@@ -26,10 +29,12 @@
       "MooseX::Types::Moose" : "0",
       "Test::Exception" : "0",
       "namespace::autoclean" : "0",
-      "Find::Lib" : "0",
       "Net::API::RPX" : "0.01",
-      "Test::use::ok" : "0.02",
       "Moose" : "0"
    },
-   "abstract" : "Use JanRain's RPX service for Credentials"
+   "abstract" : "Use JanRain's RPX service for Credentials",
+   "configure_requires" : {
+      "Module::Build" : "0.35"
+   }
 }
+

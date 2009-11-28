@@ -4,10 +4,10 @@ LICENSE
 MANIFEST
 META.json
 META.yml
-Makefile.PL
 README
 lib/Catalyst/Authentication/Credential/RPX.pm
 perlcriticrc
+t/00-compile.t
 t/05_token.t
 t/author-critic.t
 t/author-kwalitee.t
@@ -15,3 +15,4 @@ t/mock/Net/API/RPX.pm
 t/release-meta-yaml.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
+weaver.ini

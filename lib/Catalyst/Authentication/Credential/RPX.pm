@@ -2,7 +2,8 @@ use strict;
 use warnings;
 
 package Catalyst::Authentication::Credential::RPX;
-our $VERSION = '0.10003903';
+our $VERSION = '0.10013116';
+
 
 
 # ABSTRACT: Use JanRain's RPX service for Credentials
@@ -108,7 +109,6 @@ __PACKAGE__->meta->make_immutable;
 
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -117,13 +117,16 @@ Catalyst::Authentication::Credential::RPX - Use JanRain's RPX service for Creden
 
 =head1 VERSION
 
-version 0.10003903
+version 0.10013116
 
 =head1 SYNOPSIS
 
     use Catalyst qw/ Authentication /;
 
     package MyApp::Controller::Auth;
+our $VERSION = '0.10013116';
+
+
 
     sub login : Local {
         my ( $self , $c ) = @_;
@@ -151,99 +154,87 @@ version 0.10003903
       }
     });
 
-
-
 =head1 ATTRIBUTES
 
-=head2 api_key
+=head2 api_key Str[ro]*
 
 The API Key for connecting to the RPX server.
 
-=head4 type: ro required Str
-
-=head2 base_url
+=head2 base_url Str[ro]
 
 The URL The RPX server interconnects with.
 
-=head4 type: ro Str predicate=has_base_url
-
-=head2 ua
+=head2 ua Str[ro]
 
 The User-Agent String.
 
-=head4 type: ro Str predicate=has_ua
-
-=head2 token_field
+=head2 token_field Str[ro] = 'token'
 
 The token to look for in request parameters
 
-=head4 type: ro Str default = 'token
-
-=head2 last_auth_info
+=head2 last_auth_info HashRef[rw]X
 
 The results of the last call to C<< ->auth_info >>
 
-=head4 type: rw HashRef predicate = has_last_auth_info clearer = clear_last_auth_info
+=head1 AUTHENTICATION METHODS
 
+=head2 authenticate
 
+=head2 authenticate ( $context, $realm, $authinfo )
 
-=head1 PRIVATE ATTRIBUTES
+    ->authenticate( $context, $realm, $authinfo )
 
-=head2 _config
+=head2 authenticate_rpx
 
-=head4 type: rw required HashRef
+=head2 authenticate_rpx ( @args )
 
-=head2 _app
+    ->authenticate_rpx( @args )
 
-=head4 type: rw required Object
+=head1 CONSTRUCTOR METHODS
 
-=head2 _realm
+=head2 new
 
-=head4 type: rw required Object
-
-=head2 _api_driver
-
-=head4 type: ro lazy_build Object
-
-=head4 handles: auth_info map unmap mappings
-
-
-
-=head1 METHODS
-
-=head2 CONSTRUCTOR
-
-=head3 new
+=head2 new ( $config, $app, $realm );
 
 This method is called by the Authentication API.
 
-=head4 signature: ->new( $config , $app , $realm );
+    ->new( $config , $app , $realm );
 
+=head1 ATTRIBUTE METHODS
 
+=head2 has_base_url <- predicate('base_url')
 
-=head2 BUILDERS ( Private )
+=head2 has_ua <- predicate('ua')
 
-=head3 _build__api_driver
+=head2 has_last_auth_info <- predicate('last_auth_info')
+
+=head2 clear_last_auth_info <- clearer('last_auth_info')
+
+=head2 auth_info <- _api_driver
+
+=head2 map <- _api_driver
+
+=head2 unmap <- _api_driver
+
+=head2 mappings <- _api_driver
+
+=head1 PRIVATE ATTRIBUTES
+
+=head2 _config HashRef[rw]*
+
+=head2 _app Object[rw]*
+
+=head2 _realm Object[rw]*
+
+=head2 _api_driver Object[ro]
+
+=head1 PRIVATE BUILDERS
+
+=head2 _build__api_driver
 
 Creates an instance of L<Net::API::RPX> for us to communicate with.
 
-=head4 signature: ->_build__api_driver
-
-
-
-=head2 AUTHENTICATION
-
-=head3 authenticate
-
-=head4 signature: ->authenticate( $context, $realm, $authinfo )
-
-
-
-=head3 authenticate_rpx
-
-=head4 signature: ->authenticate_rpx( @args )
-
-
+    ->_build__api_driver
 
 =head1 AUTHOR
 
@@ -257,6 +248,5 @@ This is free software, licensed under:
 
   The (three-clause) BSD License
 
-=cut 
-
+=cut
 
