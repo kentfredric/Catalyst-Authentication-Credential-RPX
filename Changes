@@ -4,6 +4,7 @@ Revision history for {{$dist->name}}
           Dropped Find::Lib
           Dropped Use::ok
           Rebuild Dist/Dzill.
+          Revamp docs with Weaver.
 
 
 0.10003903 2009-08-29 03:26:38 UTC

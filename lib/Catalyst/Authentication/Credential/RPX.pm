@@ -45,37 +45,33 @@ use Net::API::RPX;
 
 =cut
 
-=head1 ATTRIBUTES
-
-=head2 api_key
+=attr api_key Str[ro]*
 
 The API Key for connecting to the RPX server.
 
-=head4 type: ro required Str
-
-=head2 base_url
+=attr base_url Str[ro]
 
 The URL The RPX server interconnects with.
 
-=head4 type: ro Str predicate=has_base_url
+=attr_meth has_base_url <- predicate('base_url')
 
-=head2 ua
+=attr ua Str[ro]
 
 The User-Agent String.
 
-=head4 type: ro Str predicate=has_ua
+=attr_meth has_ua <- predicate('ua')
 
-=head2 token_field
+=attr token_field Str[ro] = 'token'
 
 The token to look for in request parameters
 
-=head4 type: ro Str default = 'token
-
-=head2 last_auth_info
+=attr last_auth_info HashRef[rw]X
 
 The results of the last call to C<< ->auth_info >>
 
-=head4 type: rw HashRef predicate = has_last_auth_info clearer = clear_last_auth_info
+=attr_meth has_last_auth_info <- predicate('last_auth_info')
+
+=attr_meth clear_last_auth_info <- clearer('last_auth_info')
 
 =cut
 
@@ -93,25 +89,21 @@ has 'last_auth_info' => (
 );
 
 
-=head1 PRIVATE ATTRIBUTES
+=p_attr _config HashRef[rw]*
 
-=head2 _config
+=p_attr _app Object[rw]*
 
-=head4 type: rw required HashRef
+=p_attr _realm Object[rw]*
 
-=head2 _app
+=p_attr _api_driver Object[ro]
 
-=head4 type: rw required Object
+=attr_meth auth_info <- _api_driver
 
-=head2 _realm
+=attr_meth map <- _api_driver
 
-=head4 type: rw required Object
+=attr_meth unmap <- _api_driver
 
-=head2 _api_driver
-
-=head4 type: ro lazy_build Object
-
-=head4 handles: auth_info map unmap mappings
+=attr_meth mappings <- _api_driver
 
 =cut
 
@@ -125,15 +117,13 @@ has '_api_driver' => (
   handles  => [qw( auth_info map unmap mappings )],
 );
 
-=head1 METHODS
+=ctor new
 
-=head2 CONSTRUCTOR
-
-=head3 new
+=ctor new ( $config, $app, $realm );
 
 This method is called by the Authentication API.
 
-=head4 signature: ->new( $config , $app , $realm );
+    ->new( $config , $app , $realm );
 
 =cut
 
@@ -154,13 +144,11 @@ sub BUILDARGS {
   return $class->SUPER::BUILDARGS(@arg_list);
 }
 
-=head2 BUILDERS ( Private )
-
-=head3 _build__api_driver
+=p_builder _build__api_driver
 
 Creates an instance of L<Net::API::RPX> for us to communicate with.
 
-=head4 signature: ->_build__api_driver
+    ->_build__api_driver
 
 =cut
 
@@ -176,11 +164,11 @@ sub _build__api_driver {
   return Net::API::RPX->new($conf);
 }
 
-=head2 AUTHENTICATION
+=auth_method authenticate
 
-=head3 authenticate
+=auth_method authenticate ( $context, $realm, $authinfo )
 
-=head4 signature: ->authenticate( $context, $realm, $authinfo )
+    ->authenticate( $context, $realm, $authinfo )
 
 =cut
 
@@ -205,9 +193,11 @@ sub authenticate {
 
 }
 
-=head3 authenticate_rpx
+=auth_method authenticate_rpx
 
-=head4 signature: ->authenticate_rpx( @args )
+=auth_method authenticate_rpx ( @args )
+
+    ->authenticate_rpx( @args )
 
 =cut
 
