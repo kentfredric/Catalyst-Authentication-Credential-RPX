@@ -24,7 +24,7 @@ use Net::API::RPX;
 
 =head1 CONFIGURATION
 
-    __PACKAGE__->config('Plugin::Authenticate' => {
+    __PACKAGE__->config('Plugin::Authentication' => {
       default_realm => 'RPX_Service',
       realms        => {
         RPX_Service => {
@@ -91,7 +91,7 @@ has 'last_auth_info' => (
 
 =p_attr _config HashRef[rw]*
 
-=p_attr _app Object[rw]*
+=p_attr _app Object|ClassName [rw]*
 
 =p_attr _realm Object[rw]*
 
@@ -108,7 +108,7 @@ has 'last_auth_info' => (
 =cut
 
 has '_config'     => ( isa => HashRef, rw, required, );
-has '_app'        => ( isa => Object,  rw, required, );
+has '_app'        => ( isa => Object | ClassName,  rw, required, );
 has '_realm'      => ( isa => Object,  rw, required, );
 has '_api_driver' => (
   lazy_build, ro,
