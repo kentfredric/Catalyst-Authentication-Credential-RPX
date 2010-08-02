@@ -1,5 +1,12 @@
 Revision history for Catalyst-Authentication-Credential-RPX
 
+0.10038414 2010-08-03 10:05:53 Pacific/Auckland
+          Apply fix for rt $59170 : Logging in via RPX doesn't work. ( Reported and Fixed by Stephen Jauernick )
+          Move to @KENTNL
+          Apply fix for rt #58843 : Unused argument "app" wrongly validated only against Objects
+            when ClassNames were valid arguments too. ( Reported by Stephan Jauernick )
+          Ship dist.ini
+
 0.10013116 2009-11-29 05:10:50 Pacific/Auckland
           Dropped Find::Lib
           Dropped Use::ok

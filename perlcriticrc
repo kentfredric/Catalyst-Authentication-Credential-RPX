@@ -12,3 +12,12 @@ allow_includes = 1
 [Documentation::PodSpelling]
 stop_words = JanRain RPX API Cloudtone JanRain's ua
 
+[Subroutines::ProhibitUnusedPrivateSubroutines]
+private_name_regex = _(?!build_)\w
+
+[TestingAndDebugging::RequireUseStrict]
+equivalent_modules = Moose
+
+[TestingAndDebugging::RequireUseWarnings]
+equivalent_modules = Moose
+
