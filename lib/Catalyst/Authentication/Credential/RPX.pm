@@ -2,9 +2,9 @@ use strict;
 use warnings;
 
 package Catalyst::Authentication::Credential::RPX;
-our $VERSION = '0.10013116';
-
-
+BEGIN {
+  $Catalyst::Authentication::Credential::RPX::VERSION = '0.10038414';
+}
 
 # ABSTRACT: Use JanRain's RPX service for Credentials
 
@@ -32,7 +32,7 @@ has 'last_auth_info' => (
 
 
 has '_config'     => ( isa => HashRef, rw, required, );
-has '_app'        => ( isa => Object,  rw, required, );
+has '_app'        => ( isa => Object | ClassName,  rw, required, );
 has '_realm'      => ( isa => Object,  rw, required, );
 has '_api_driver' => (
   lazy_build, ro,
@@ -74,24 +74,30 @@ sub _build__api_driver {
 
 
 sub authenticate {
-  my ( $self, $c, $realm, $authinfo ) = @_;
-  my $token_field = $self->token_field;
-  my $token;
+	my ( $self, $c, $realm, $authinfo ) = @_;
+	my $token_field = $self->token_field;
+	my $token;
 
-  unless ( exists $c->req->params->{$token_field} ) {
-    return;
-  }
+	unless ( exists $c->req->params->{$token_field} ) {
+    	return;
+	}
 
-  $token = $c->req->params->{$token_field};
+	$token = $c->req->params->{$token_field};
 
-  my $result = $self->authenticate_rpx( { token => $token } );
+	my $result = $self->authenticate_rpx( { token => $token } );
 
-  if ( exists $result->{'err'} ) {
-    return;
-  }
+	if ( exists $result->{'err'} ) {
+    	return;
+	}
 
-  return $result;
+	my $user_obj = $realm->find_user($result, $c);
 
+	if(ref $user_obj)
+	{
+		return $user_obj;
+	}
+
+	return;
 }
 
 
@@ -117,16 +123,13 @@ Catalyst::Authentication::Credential::RPX - Use JanRain's RPX service for Creden
 
 =head1 VERSION
 
-version 0.10013116
+version 0.10038414
 
 =head1 SYNOPSIS
 
     use Catalyst qw/ Authentication /;
 
     package MyApp::Controller::Auth;
-our $VERSION = '0.10013116';
-
-
 
     sub login : Local {
         my ( $self , $c ) = @_;
@@ -135,7 +138,7 @@ our $VERSION = '0.10013116';
 
 =head1 CONFIGURATION
 
-    __PACKAGE__->config('Plugin::Authenticate' => {
+    __PACKAGE__->config('Plugin::Authentication' => {
       default_realm => 'RPX_Service',
       realms        => {
         RPX_Service => {
@@ -214,7 +217,7 @@ This method is called by the Authentication API.
 
 =head2 map <- _api_driver
 
-=head2 unmap <- _api_driver
+=head2 C<unmap> <- _api_driver
 
 =head2 mappings <- _api_driver
 
@@ -222,7 +225,7 @@ This method is called by the Authentication API.
 
 =head2 _config HashRef[rw]*
 
-=head2 _app Object[rw]*
+=head2 _app Object|ClassName [rw]*
 
 =head2 _realm Object[rw]*
 
@@ -232,17 +235,17 @@ This method is called by the Authentication API.
 
 =head2 _build__api_driver
 
-Creates an instance of L<Net::API::RPX> for us to communicate with.
+Creates an instance of L<< C<Net::API::RPX>|Net::API::RPX >> for us to communicate with.
 
     ->_build__api_driver
 
 =head1 AUTHOR
 
-  Kent Fredric <kentnl@cpan.org>
+Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2009 by 'Cloudtone Studios'.
+This software is Copyright (c) 2010 by 'Cloudtone Studios'.
 
 This is free software, licensed under:
 

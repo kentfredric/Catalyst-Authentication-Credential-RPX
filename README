@@ -3,15 +3,12 @@ NAME
     for Credentials
 
 VERSION
-    version 0.10013116
+    version 0.10038414
 
 SYNOPSIS
         use Catalyst qw/ Authentication /;
 
         package MyApp::Controller::Auth;
-    our $VERSION = '0.10013116';
-
-
 
         sub login : Local {
             my ( $self , $c ) = @_;
@@ -19,7 +16,7 @@ SYNOPSIS
         }
 
 CONFIGURATION
-        __PACKAGE__->config('Plugin::Authenticate' => {
+        __PACKAGE__->config('Plugin::Authentication' => {
           default_realm => 'RPX_Service',
           realms        => {
             RPX_Service => {
@@ -77,24 +74,24 @@ ATTRIBUTE METHODS
   clear_last_auth_info <- clearer('last_auth_info')
   auth_info <- _api_driver
   map <- _api_driver
-  unmap <- _api_driver
+  "unmap" <- _api_driver
   mappings <- _api_driver
 PRIVATE ATTRIBUTES
   _config HashRef[rw]*
-  _app Object[rw]*
+  _app Object|ClassName [rw]*
   _realm Object[rw]*
   _api_driver Object[ro]
 PRIVATE BUILDERS
   _build__api_driver
-    Creates an instance of Net::API::RPX for us to communicate with.
+    Creates an instance of "Net::API::RPX" for us to communicate with.
 
         ->_build__api_driver
 
 AUTHOR
-      Kent Fredric <kentnl@cpan.org>
+    Kent Fredric <kentnl@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is Copyright (c) 2009 by 'Cloudtone Studios'.
+    This software is Copyright (c) 2010 by 'Cloudtone Studios'.
 
     This is free software, licensed under:
 
