@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Apply fix for rt $59170 : Logging in via RPX doesn't work. ( Reported and Fixed by Stephen Jauernick )
+          Move to @KENTNL
           Apply fix for rt #58843 : Unused argument "app" wrongly validated only against Objects
             when ClassNames were valid arguments too. ( Reported by Stephan Jauernick )
           Ship dist.ini
