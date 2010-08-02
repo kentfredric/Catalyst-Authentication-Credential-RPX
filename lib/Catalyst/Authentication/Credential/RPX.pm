@@ -101,7 +101,7 @@ has 'last_auth_info' => (
 
 =attr_meth map <- _api_driver
 
-=attr_meth unmap <- _api_driver
+=attr_meth C<unmap> <- _api_driver
 
 =attr_meth mappings <- _api_driver
 
@@ -146,7 +146,7 @@ sub BUILDARGS {
 
 =p_builder _build__api_driver
 
-Creates an instance of L<Net::API::RPX> for us to communicate with.
+Creates an instance of L<< C<Net::API::RPX>|Net::API::RPX >> for us to communicate with.
 
     ->_build__api_driver
 
