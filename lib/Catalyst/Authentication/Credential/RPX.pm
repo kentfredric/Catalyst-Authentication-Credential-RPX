@@ -173,24 +173,30 @@ sub _build__api_driver {
 =cut
 
 sub authenticate {
-  my ( $self, $c, $realm, $authinfo ) = @_;
-  my $token_field = $self->token_field;
-  my $token;
+	my ( $self, $c, $realm, $authinfo ) = @_;
+	my $token_field = $self->token_field;
+	my $token;
 
-  unless ( exists $c->req->params->{$token_field} ) {
-    return;
-  }
+	unless ( exists $c->req->params->{$token_field} ) {
+    	return;
+	}
 
-  $token = $c->req->params->{$token_field};
+	$token = $c->req->params->{$token_field};
 
-  my $result = $self->authenticate_rpx( { token => $token } );
+	my $result = $self->authenticate_rpx( { token => $token } );
 
-  if ( exists $result->{'err'} ) {
-    return;
-  }
+	if ( exists $result->{'err'} ) {
+    	return;
+	}
 
-  return $result;
+	my $user_obj = $realm->find_user($result, $c);
 
+	if(ref $user_obj)
+	{
+		return $user_obj;
+	}
+
+	return;
 }
 
 =auth_method authenticate_rpx
