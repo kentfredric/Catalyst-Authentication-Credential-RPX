@@ -1,9 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Fixed bad changelog spelling.
 
 0.10038414 2010-08-03 10:05:53 Pacific/Auckland
-          Apply fix for rt $59170 : Logging in via RPX doesn't work. ( Reported and Fixed by Stephen Jauernick )
+          Apply fix for rt $59170 : Logging in via RPX doesn't work. ( Reported and Fixed by Stephan Jauernick )
           Move to @KENTNL
           Apply fix for rt #58843 : Unused argument "app" wrongly validated only against Objects
             when ClassNames were valid arguments too. ( Reported by Stephan Jauernick )
