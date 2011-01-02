@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Get rid of FindBin completely.
+          Replace Test::Exception with Test::Fatal
+          Toolkit upgrade.
           Fixed bad changelog spelling.
 
 0.10038414 2010-08-03 10:05:53 Pacific/Auckland
