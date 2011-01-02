@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.10053905 2011-01-03 02:05:29 Pacific/Auckland
           Get rid of FindBin completely.
           Replace Test::Exception with Test::Fatal
           Toolkit upgrade.
