@@ -7,11 +7,11 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   'build_requires' => {
+    'English' => '0',
     'File::Find' => '0',
     'File::Temp' => '0',
-    'FindBin' => '0',
     'Module::Build' => '0.3601',
-    'Test::Exception' => '0',
+    'Test::Fatal' => '0',
     'Test::MockObject' => '0',
     'Test::More' => '0.88'
   },
@@ -23,7 +23,7 @@ my %module_build_args = (
     'Kent Fredric <kentnl@cpan.org>'
   ],
   'dist_name' => 'Catalyst-Authentication-Credential-RPX',
-  'dist_version' => '0.10038414',
+  'dist_version' => '0.10053905',
   'license' => 'bsd',
   'module_name' => 'Catalyst::Authentication::Credential::RPX',
   'recommends' => {},
@@ -33,9 +33,6 @@ my %module_build_args = (
     'MooseX::Has::Sugar' => '0.0300',
     'MooseX::Types::Moose' => '0',
     'Net::API::RPX' => '0.01',
-    'Test::Exception' => '0',
-    'Test::MockObject' => '0',
-    'Test::More' => '0',
     'namespace::autoclean' => '0'
   },
   'script_files' => []

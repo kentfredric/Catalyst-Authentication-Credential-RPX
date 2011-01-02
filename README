@@ -3,7 +3,7 @@ NAME
     for Credentials
 
 VERSION
-    version 0.10038414
+    version 0.10053905
 
 SYNOPSIS
         use Catalyst qw/ Authentication /;
@@ -91,7 +91,7 @@ AUTHOR
     Kent Fredric <kentnl@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is Copyright (c) 2010 by 'Cloudtone Studios'.
+    This software is Copyright (c) 2011 by 'Cloudtone Studios'.
 
     This is free software, licensed under:
 

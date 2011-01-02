@@ -3,7 +3,7 @@ use warnings;
 
 package Catalyst::Authentication::Credential::RPX;
 BEGIN {
-  $Catalyst::Authentication::Credential::RPX::VERSION = '0.10038414';
+  $Catalyst::Authentication::Credential::RPX::VERSION = '0.10053905';
 }
 
 # ABSTRACT: Use JanRain's RPX service for Credentials
@@ -123,7 +123,7 @@ Catalyst::Authentication::Credential::RPX - Use JanRain's RPX service for Creden
 
 =head1 VERSION
 
-version 0.10038414
+version 0.10053905
 
 =head1 SYNOPSIS
 
@@ -245,7 +245,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2010 by 'Cloudtone Studios'.
+This software is Copyright (c) 2011 by 'Cloudtone Studios'.
 
 This is free software, licensed under:
 

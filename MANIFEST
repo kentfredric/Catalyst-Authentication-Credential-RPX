@@ -7,7 +7,7 @@ META.yml
 README
 dist.ini
 lib/Catalyst/Authentication/Credential/RPX.pm
-perlcriticrc
+perlcritic.rc
 t/00-compile.t
 t/000-report-versions-tiny.t
 t/05_token.t

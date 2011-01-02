@@ -4,7 +4,7 @@ use warnings;
 
 use Test::MockObject;
 use Test::More tests => 10;
-use Test::Exception;
+use Test::Fatal;
 
 sub RPX() {
   'Catalyst::Authentication::Credential::RPX';
@@ -16,13 +16,14 @@ sub APIRPX() {
 
 # Order is important
 
-use FindBin;
-use lib "$FindBin::Bin/mock";
+use lib "t/mock";
+
 BEGIN {
-    use_ok(APIRPX());
+  use_ok( APIRPX() );
 }
+
 BEGIN {
-    use_ok(RPX());
+  use_ok( RPX() );
 }
 
 my $config = {
@@ -30,6 +31,7 @@ my $config = {
   base_url    => 'http://example.com',
   token_field => 'token',
 };
+
 my $realm = Test::MockObject->new();
 $realm->mock( find_user => sub { $_[1] } );
 
@@ -59,17 +61,17 @@ my %data = map {
 
   my ( $m, $user );
 
-  lives_ok { $m = RPX->new( $config, $data{A}, $realm ) } "Create Credential ( XSUCCESS )";
+  is( exception { $m = RPX->new( $config, $data{A}, $realm ) }, undef, "Create Credential ( XSUCCESS )" );
   can_ok( $m, qw( new authenticate ) );
 
-  lives_ok { $user = $m->authenticate( $data{A}, $realm ); } "Authenticate Credential ( XSUCCESS )";
+  is( exception { $user = $m->authenticate( $data{A}, $realm ); }, undef, "Authenticate Credential ( XSUCCESS )" );
   is_deeply( $user, $Net::API::RPX::RESPONSES->{'A'}, "Credentials Match Expectations" );
 }
 
 {    # Fail
   my ( $m, $user );
-  lives_ok { $m = RPX->new( $config, $data{B}, $realm, ) } "Create Credential ( XFAIL )";
+  is( exception { $m = RPX->new( $config, $data{B}, $realm, ) }, undef, "Create Credential ( XFAIL )" );
   can_ok( $m, qw( new authenticate  ) );
-  lives_ok { $user = $m->authenticate( $data{B}, $realm, ); } "Authenticate Credential ( XFAIL )";
+  is( exception { $user = $m->authenticate( $data{B}, $realm, ); }, undef, "Authenticate Credential ( XFAIL )" );
   is_deeply( $user, undef, "Authentication fails properly" );
 }
