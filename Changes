@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.10053906 2011-10-22T14:03:24Z
  - Maintenance Release
 
  [Dependencies::New::Runtime]
