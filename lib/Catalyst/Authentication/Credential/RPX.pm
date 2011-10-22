@@ -3,7 +3,10 @@ use warnings;
 
 package Catalyst::Authentication::Credential::RPX;
 BEGIN {
-  $Catalyst::Authentication::Credential::RPX::VERSION = '0.10053905';
+  $Catalyst::Authentication::Credential::RPX::AUTHORITY = 'cpan:KENTNL';
+}
+{
+  $Catalyst::Authentication::Credential::RPX::VERSION = '0.10053906';
 }
 
 # ABSTRACT: Use JanRain's RPX service for Credentials
@@ -123,7 +126,7 @@ Catalyst::Authentication::Credential::RPX - Use JanRain's RPX service for Creden
 
 =head1 VERSION
 
-version 0.10053905
+version 0.10053906
 
 =head1 SYNOPSIS
 

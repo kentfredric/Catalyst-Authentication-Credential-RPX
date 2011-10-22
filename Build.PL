@@ -6,36 +6,37 @@ use Module::Build 0.3601;
 
 
 my %module_build_args = (
-  'build_requires' => {
-    'English' => '0',
-    'File::Find' => '0',
-    'File::Temp' => '0',
-    'Module::Build' => '0.3601',
-    'Test::Fatal' => '0',
-    'Test::MockObject' => '0',
-    'Test::More' => '0.88'
+  "build_requires" => {
+    "File::Find" => 0,
+    "File::Temp" => 0,
+    "Module::Build" => "0.3601",
+    "Test::Fatal" => 0,
+    "Test::MockObject" => 0,
+    "Test::More" => "0.88"
   },
-  'configure_requires' => {
-    'Module::Build' => '0.3601'
+  "configure_requires" => {
+    "Module::Build" => "0.3601"
   },
-  'dist_abstract' => 'Use JanRain\'s RPX service for Credentials',
-  'dist_author' => [
-    'Kent Fredric <kentnl@cpan.org>'
+  "dist_abstract" => "Use JanRain's RPX service for Credentials",
+  "dist_author" => [
+    "Kent Fredric <kentnl\@cpan.org>"
   ],
-  'dist_name' => 'Catalyst-Authentication-Credential-RPX',
-  'dist_version' => '0.10053905',
-  'license' => 'bsd',
-  'module_name' => 'Catalyst::Authentication::Credential::RPX',
-  'recommends' => {},
-  'recursive_test_files' => 1,
-  'requires' => {
-    'Moose' => '0',
-    'MooseX::Has::Sugar' => '0.0300',
-    'MooseX::Types::Moose' => '0',
-    'Net::API::RPX' => '0.01',
-    'namespace::autoclean' => '0'
+  "dist_name" => "Catalyst-Authentication-Credential-RPX",
+  "dist_version" => "0.10053906",
+  "license" => "bsd",
+  "module_name" => "Catalyst::Authentication::Credential::RPX",
+  "recommends" => {},
+  "recursive_test_files" => 1,
+  "requires" => {
+    "Moose" => 0,
+    "MooseX::Has::Sugar" => "0.0300",
+    "MooseX::Types::Moose" => 0,
+    "Net::API::RPX" => "0.01",
+    "namespace::autoclean" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  'script_files' => []
+  "script_files" => []
 );
 
 
